@@ -1,0 +1,32 @@
+.App111 {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  .btn-show-modal {
+    border: 1px solid #ccc;
+  }
+  .list {
+    list-style: none;
+    margin: 0;
+  }
+  .list > li {
+    font-size: 20px;
+    margin: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  .modal-body {
+    margin: 100px 0;
+  }
+  .ReactModal__Body--open {
+    overflow: hidden;
+  }
+  
+  .select-box {
+    position: relative;
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;
+    font-size: 18px;
+    color: #60666d;
+  }
