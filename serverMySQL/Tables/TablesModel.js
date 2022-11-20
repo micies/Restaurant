@@ -23,7 +23,7 @@ export const getAllTasbles = (req, res, next) => {
 
 export const getByIdTable = (req, res, next) => {
   const { id } = req.params;
-  db.query(`SELECT * FROM TablesFood WHERE id = ${id}`, function (err, result) {
+  db.query(`SELECT * FROM TablesFood WHERE id = '${id}'`, function (err, result) {
     if (err) throw err;
     res.send(result);
   });
@@ -31,8 +31,8 @@ export const getByIdTable = (req, res, next) => {
 }
 
 
-export const createTable = (req, res, next, dataFromUser) => {
-  const sql = `INSERT INTO TablesFood (capacity) VALUES ('${dataFromUser.capacity}') `
+export const createTable = (req, res, next) => {
+  const sql = `INSERT INTO TablesFood (capacity) VALUES ('${req.body.capacity}') `
   db.query(sql, function (err, result) {
     if (err) throw err;
     res.send(result);;
@@ -40,8 +40,10 @@ export const createTable = (req, res, next, dataFromUser) => {
 }
 
 
-export const updateTable = (req, res, next, dataFromUser) => {
-  const query = `UPDATE TablesFood SET capacity = ${dataFromUser.capacity} WHERE id = ${dataFromUser.id} `;
+export const updateTable = (req, res, next) => {
+  const { id } = req.params;
+
+  const query = `UPDATE TablesFood SET capacity = ${req.body.capacity} WHERE id = '${id}' `;
   db.query(query, function (err, data) {
 
     if (err) throw err;
@@ -52,6 +54,7 @@ export const updateTable = (req, res, next, dataFromUser) => {
 
 export const deleteTable = (req, res, next) => {
   const { id } = req.params;
+
     const sql = `DELETE FROM TablesFood WHERE id = ${id}`;
     db.query(sql, function (err, result) {
       if (err) throw err;

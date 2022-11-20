@@ -19,16 +19,17 @@ export const getAllDiners = (req, res) => {
   });
 };
 
-export const getByIdDiners = (req, res, next, id) => {
+export const getByIdDiners = (req, res, next) => {
+  const { id } = req.params;
   db.query(`SELECT * FROM Diners WHERE id = ${id}`,  (err, result) => {
     if (err) throw err;
     res.send(result);
   });
 };
 
-export const createDiner = (req, res, next, dataFromUser) => {
+export const createDiner = (req, res, next) => {
 
-    let sql = `INSERT INTO Diners (name, size, queue, reservations, sum) VALUES ('${dataFromUser.name}', ${dataFromUser.size}, '${dataFromUser.queue}', '${dataFromUser.reservations}' ,  '${dataFromUser.sum}')`;
+    let sql = `INSERT INTO Diners (name, size, queue, reservations, sum) VALUES ('${req.body.name}', ${req.body.size}, tobesited, {} ,  0)`;
     db.query(sql, (err, result) => {
       if (err) {
         throw err
@@ -62,9 +63,10 @@ export const sitByPeriority = async (req, res, next) => {
 }
 
 
-export const updateDiner = (req, res, next, dataFromUser) => {
+export const updateDiner = (req, res, next) => {
+  const { id } = req.params;
 
-  const query = `UPDATE Diners SET name = '${dataFromUser.name}', size = '${dataFromUser.size}' WHERE id = ${dataFromUser.id} `;
+  const query = `UPDATE Diners SET name = '${dreq.body.name}', size = '${req.body.size}' WHERE id = '${id}' `;
 
   db.query(query, (err, data) => {
     if (err) throw err;
@@ -73,7 +75,9 @@ export const updateDiner = (req, res, next, dataFromUser) => {
 };
 
 
-export const deleteDiner = (req, res, next, id) => {
+export const deleteDiner = (req, res, next) => {
+  const { id } = req.params;
+
 
   const query = `UPDATE TablesFood SET status = null  WHERE status = ${id} `;
 
