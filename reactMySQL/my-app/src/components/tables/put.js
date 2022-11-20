@@ -30,7 +30,7 @@ export default function UpdateTable() {
   }
 
   const handleSubmit = () => {
-    if (table.capasity.length == 0){
+    if (table.capasity.length === 0){
       return alert("There are empty fields")
     }
     Put(baseURL, id, table, setResponse)

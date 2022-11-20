@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { BsPencil } from "react-icons/bs";
 import { GrFormEdit } from "react-icons/gr";
-import { Button, Modal } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import 'reactjs-popup/dist/index.css';
 import React from 'react';
 import { Link } from "react-router-dom";

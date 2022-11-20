@@ -31,7 +31,7 @@ export default function UpdateDiners() {
   }
 
   const handleSubmit = () => {
-    if (diner.name.length == 0 || diner.size.length == 0){
+    if (diner.name.length === 0 || diner.size.length === 0){
       return alert("There are empty fields")
     }
     Put(baseURL, id, diner, setResponse)

@@ -66,7 +66,7 @@ export const sitByPeriority = async (req, res, next) => {
 export const updateDiner = (req, res, next) => {
   const { id } = req.params;
 
-  const query = `UPDATE Diners SET name = '${dreq.body.name}', size = '${req.body.size}' WHERE id = '${id}' `;
+  const query = `UPDATE Diners SET name = '${req.body.name}', size = '${req.body.size}' WHERE id = '${id}' `;
 
   db.query(query, (err, data) => {
     if (err) throw err;

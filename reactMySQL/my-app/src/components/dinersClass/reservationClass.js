@@ -5,7 +5,7 @@ import ApiService from "./BaseServiceClass.js"
 
 
  
-export class ReservationClass extends React.Component {    
+export class ReservationClass extends Component {    
     id  = window.location.href.split('/').pop()
 
     constructor(props) {

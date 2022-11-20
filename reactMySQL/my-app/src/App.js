@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css';
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import CreateRoutes from './routes';
+import RoutesRestuarant from './routes';
 
 
 
@@ -25,7 +25,7 @@ function App() {
     </Container>
   </Navbar>
 </>
-<CreateRoutes/>
+<RoutesRestuarant/>
     </div>
   );
 

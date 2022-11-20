@@ -5,7 +5,7 @@ import ApiService from "./BaseServiceClass.js"
 
 
  
-export class GetByIdMenuClass extends React.Component {    
+export class GetByIdMenuClass extends Component {    
     id  = window.location.href.split('/').pop()
 
     constructor(props) {

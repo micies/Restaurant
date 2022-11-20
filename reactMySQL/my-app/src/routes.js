@@ -31,7 +31,7 @@ import DinersTable from './components/diners/TableDiners'
 
 
 
-export default function CreateRoutes() {
+export default function RoutesRestuarant() {
     return(
 
 

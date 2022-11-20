@@ -5,7 +5,7 @@ import ApiService from "./BaseServiceClass.js"
 
 
  
-export class PostDinersClass extends React.Component {    
+export class PostDinersClass extends Component {    
 
     constructor(props) {
         super(props);

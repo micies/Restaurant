@@ -1,7 +1,6 @@
 
 import React, { Component } from "react";
-import { BsTrashFill, BsPencil, BsSearch, BsBasket, BsFillCreditCard2BackFill } from "react-icons/bs";
-import { GrFormEdit } from "react-icons/gr";
+import { BsPencil, BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap"
 import ApiService from "./BaseServiceClass.js"
@@ -9,7 +8,7 @@ import ApiService from "./BaseServiceClass.js"
 
 
 
-export class HomeTablesClass extends React.Component {
+export class HomeTablesClass extends Component {
 
   BASE_URL = process.env.REACT_APP_BASE_URL;
 

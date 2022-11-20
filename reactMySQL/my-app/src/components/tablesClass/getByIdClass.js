@@ -5,7 +5,7 @@ import ApiService from "./BaseServiceClass.js"
 
 
  
-export class GetByIdTablesClass extends React.Component {    
+export class GetByIdTablesClass extends Component {    
     id  = window.location.href.split('/').pop()
 
     constructor(props) {
