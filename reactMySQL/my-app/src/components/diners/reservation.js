@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {  Badge, Button } from 'react-bootstrap';
-import './reser.css'
 import "reactjs-popup/dist/index.css";
 import { Get, GetById, PostById , Delete} from "../../BaseService";
 import { useParams } from "react-router-dom";
@@ -95,7 +94,7 @@ export default function Reservation() {
                 <td>{name}</td>
                 <td>{category}</td>
                 <td>{price}</td>                    
-                    <input
+                    <input className="small"
                       name={id}
                       value={orderQuantities[id] || ""}
                       type="number"

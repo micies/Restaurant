@@ -68,16 +68,16 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-
+ .small {
+  left: 10px;
+  top: 10px;
+  width: 50px;
+  /* height: 20px; */
+  padding: 0px;
+  font-size: 14pt;
+  border: solid 0.5px #000;
+  z-index: 1;
+}
 
 
  .number-wrapper {

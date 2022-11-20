@@ -73,7 +73,6 @@ export default function RoutesRestuarant() {
       
       <Route path='/reservationClass' element={<ReservationClass/>}  />
       
-      <Route path='/111' element={<DinersTable/>}  />
     </Routes>
   </Router>
 )};
