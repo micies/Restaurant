@@ -29,7 +29,7 @@ export default function GetIdTables() {
     <div>
       <h1>Show tables</h1>
       table name:
-      <GetInput value={tables.name} disabled={true} />
+      <GetInput value={tables.id} disabled={true} />
       capacity:
       <GetInput value={tables.capacity} disabled={true} />
       status:
