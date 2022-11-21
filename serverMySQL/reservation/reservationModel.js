@@ -5,11 +5,11 @@ export const calculateSumOrder = async (req, res, next) => {
     const { id } = req.params;
     let sumPrice = 0;
 
-    let searchById = `SELECT * FROM Diners WHERE id =${id}`
+    const searchById = `SELECT * FROM Diners WHERE id =${id}`
     let result = await SQL(searchById)
     let reservationByMenu = [JSON.parse(result[0].reservations)];
     for (const [key, value] of Object.entries(reservationByMenu[0])) {
-      let sum = `SELECT price FROM Menu WHERE id =${key}`
+      const sum = `SELECT price FROM Menu WHERE id =${key}`
       let calculate = await SQL(sum)
 
       sumPrice = sumPrice + calculate[0].price * value

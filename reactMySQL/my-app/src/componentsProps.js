@@ -48,7 +48,7 @@ export function Modal1({ confirmFunc, text}){
       <Modal.Footer>
         <Button
           variant="primary"
-          onClick={confirmFunc}
+          onClick={()=>{confirmFunc(); handleClose()}}
         >
           מחק
         </Button>

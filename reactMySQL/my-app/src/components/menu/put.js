@@ -44,7 +44,6 @@ export default function UpdateMenu() {
       <div > Update Menu </div>
       Category
       <GetInput value={menu.category} type={"text"} onChange={handleChange} name={"category"} />
-
       Name
       <GetInput value={menu.name} type={"text"} onChange={handleChange} name={"name"} />
       Price

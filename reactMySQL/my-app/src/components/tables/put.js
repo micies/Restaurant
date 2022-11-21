@@ -42,7 +42,7 @@ export default function UpdateTable() {
     <div>
       <div > Update Table </div>
       name
-      <GetInput value={table.capasity} type={"text"} onChange={handleChange} name={"capasity"}  />
+      <GetInput value={table.capasity} type={"number"} onChange={handleChange} name={"capasity"}  />
       <button className="btn btn-sm btn-primary" onClick={handleSubmit}>Update Data</button>
       <Button href='/tables'>Back</Button>{' '}
 

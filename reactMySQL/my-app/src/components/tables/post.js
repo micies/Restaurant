@@ -41,7 +41,7 @@ export default function CreateTable() {
     <div>
       <div > Create table </div>
       capacity
-      <GetInput type={"text"} onChange={handleChange} name={"capacity"} />
+      <GetInput type={"number"} onChange={handleChange} name={"capacity"} />
 
       <button className="btn btn-sm btn-primary" onClick={handleSubmit}>Create</button>
       <Button href='/tables'>Back</Button>{' '}
