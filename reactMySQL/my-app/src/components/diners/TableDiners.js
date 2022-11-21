@@ -42,7 +42,6 @@ export default function DinersTable() {
   const sitUser = () => {
     Get(setMassege, BaseUrlSit)
     notify()
-    setReload(!reload)
     return (massege)
   };
 
