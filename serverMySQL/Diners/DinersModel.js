@@ -4,9 +4,8 @@ import { SQL } from "../PromiseSQL.js";
 
 export const createTableDiners = (req, res, next) => {
   let sql =
-    // "CREATE TABLE Diners (id INT AUTO_INCREMENT PRIMARY KEY,`lastUpdated` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, name VARCHAR(255), size INT, queue VARCHAR(255), reservations VARCHAR(255), table1 INT, sum VARCHAR(255))";
-// "CREATE TABLE Student_grade(id INT PRIMARY KEY AUTO_INCREMENT, Grade VARCHAR(250) NOT NULL, priority ENUM('Low', 'Medium', 'High') NOT NULL)";
-// "INSERT INTO Student_grade(Grade, priority) VALUES('Good grades', 'High')";
+    "CREATE TABLE Diners (id INT AUTO_INCREMENT PRIMARY KEY,`lastUpdated` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, name VARCHAR(255), size INT, queue VARCHAR(255), reservations VARCHAR(255), table1 INT, sum VARCHAR(255))";
+
   db.query(sql, (err, result) => {
     if (err) throw err;
     res.send("Table created");
