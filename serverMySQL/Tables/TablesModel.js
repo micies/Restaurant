@@ -1,5 +1,5 @@
 
-import { db } from "../index.js";
+import { db } from "../dbConnect.js";
 
 
 export const createTableTasbles = (req, res, next) => {

@@ -1,4 +1,4 @@
-import {db} from './index.js'
+import {db} from './dbConnect.js'
 
 export const SQL = (sql) => {
     return new Promise((resolveRead, reject) => {

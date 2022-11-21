@@ -1,5 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-reactMySQL/my-app/node_modules
+/reactMySQL/my-app/node_modules
 
-serverMySQL/node_modules
+/serverMySQL/node_modules
+/node_modules
+
