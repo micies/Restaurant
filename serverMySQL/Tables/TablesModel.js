@@ -3,7 +3,7 @@ import { db } from "../dbConnect.js";
 
 
 export const createTableTasbles = (req, res, next) => {
-  const sql = "CREATE TABLE TablesFood (id INT AUTO_INCREMENT PRIMARY KEY,`lastUpdated` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, capacity VARCHAR(255), status VARCHAR(255))";
+  const sql = "CREATE TABLE TablesFood (id INT AUTO_INCREMENT PRIMARY KEY,`lastUpdated` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, capacity VARCHAR(255), status INT)";
   db.query(sql, function (err, result) {
       if (err) throw err;
       res.send("Table created");
@@ -39,8 +39,6 @@ export const createTable = (req, res, next) => {
     
   })
 }
-
-
 
 
 export const updateTable = (req, res, next) => {

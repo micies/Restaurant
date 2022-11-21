@@ -3,9 +3,8 @@ import { db } from "../dbConnect.js";
 
 
 
-const table_name = 'Menu';
 export const createTableMenu = (req, res, next) => {
-  const sql = "CREATE TABLE Menu (id INT AUTO_INCREMENT PRIMARY KEY,`lastUpdated` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, category VARCHAR(255), name VARCHAR(255), price VARCHAR(255))";
+  const sql = "CREATE TABLE Menu (id INT AUTO_INCREMENT PRIMARY KEY,`lastUpdated` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, category VARCHAR(255), name VARCHAR(255), price DECIMAL(10,2))";
   db.query(sql, function (err, result) {
       if (err) throw err;
       res.send("Table created");
@@ -14,9 +13,8 @@ export const createTableMenu = (req, res, next) => {
 };
 
 
-
 export const getAllMenu = (req, res, next) => {
-  db.query(`SELECT * FROM ${table_name}`, (err, result, fields) => {
+  db.query('SELECT id, capacity, status FROM Menu', (err, result, fields) => {
     if (err) throw err;
     res.send(result);
   });
@@ -27,7 +25,7 @@ export const getAllMenu = (req, res, next) => {
 export const getByIdMenu = (req, res, next) => {
   
   const { id } = req.params;
-  db.query('SELECT * FROM ${table_name} WHERE id = ?',[id], (err, result) => {
+  db.query('SELECT id, capacity, status FROM Menu WHERE id = ?',[id], (err, result) => {
     if (err) throw err;
     res.send(result);
   });
@@ -37,7 +35,7 @@ export const getByIdMenu = (req, res, next) => {
 
 export const createMenu = (req, res, next) => {
 
-  db.query('INSERT INTO ${table_name} (category, name, price) VALUES (?,?,?)',[req.body.category, req.body.name, req.body.price], (err, result) => {
+  db.query('INSERT INTO Menu (category, name, price) VALUES (?,?,?)',[req.body.category, req.body.name, req.body.price], (err, result) => {
     if (err) throw err;(result)
     res.send(result);;
   })
@@ -47,7 +45,7 @@ export const createMenu = (req, res, next) => {
 export const updateMenu = (req, res, next) => {
   const { id } = req.params;
 
-  db.query(`UPDATE ${table_name} SET category = ?, name = ?, price = ? WHERE id = ? `, [req.body.category, req.body.name, req.body.price, id], (err, data) => {
+  db.query('UPDATE Menu SET category = ?, name = ?, price = ? WHERE id = ?', [req.body.category, req.body.name, req.body.price, id], (err, data) => {
     if (err) throw err;
     res.send(data);;
   });
@@ -59,7 +57,7 @@ export const updateMenu = (req, res, next) => {
 export const deleteMenu = (req, res, next) => {
   const { id } = req.params;
 
-    db.query('DELETE FROM ${table_name} WHERE id = ?',[id], (err, result) => {
+    db.query('DELETE FROM Menu WHERE id = ?',[id], (err, result) => {
       if (err) throw err;
       res.send("Number of records deleted: " + result.affectedRows);
     });
