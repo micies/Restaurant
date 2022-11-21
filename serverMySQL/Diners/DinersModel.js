@@ -12,6 +12,7 @@ export const createTableDiners = (req, res, next) => {
   });
 };
 
+
 export const getAllDiners = (req, res) => {
   db.query("SELECT * FROM Diners", (err, result) => {
     if (err) throw err;
@@ -19,18 +20,20 @@ export const getAllDiners = (req, res) => {
   });
 };
 
+
 export const getByIdDiners = (req, res, next) => {
   const { id } = req.params;
-  db.query(`SELECT * FROM Diners WHERE id = ${id}`,  (err, result) => {
+  db.query(`SELECT * FROM Diners WHERE id = ?`, [id],  (err, result) => {
     if (err) throw err;
     res.send(result);
   });
 };
 
+
 export const createDiner = (req, res, next) => {
 
-    let sql = `INSERT INTO Diners (name, size, queue, reservations, sum) VALUES ('${req.body.name}', ${req.body.size}, tobesited, {} ,  0)`;
-    db.query(sql, (err, result) => {
+    let sql = 
+    db.query('INSERT INTO Diners (name, size, queue, reservations, sum) VALUES (?,?,?,?,?)',[req.body.name,req.body.size, "tobesited", {}, 0 ], (err, result) => {
       if (err) {
         throw err
       }
@@ -38,7 +41,6 @@ export const createDiner = (req, res, next) => {
       res.send(dataFromUser)};
     });
 };
-
 
 
 export const sitByPeriority = async (req, res, next) => {
@@ -66,9 +68,7 @@ export const sitByPeriority = async (req, res, next) => {
 export const updateDiner = (req, res, next) => {
   const { id } = req.params;
 
-  const query = `UPDATE Diners SET name = '${req.body.name}', size = '${req.body.size}' WHERE id = '${id}' `;
-
-  db.query(query, (err, data) => {
+  db.query('UPDATE Diners SET name =?, size = ? WHERE id = ?',[req.body.name, req.body.size, id], (err, data) => {
     if (err) throw err;
     res.send(data);
   });
@@ -78,15 +78,11 @@ export const updateDiner = (req, res, next) => {
 export const deleteDiner = (req, res, next) => {
   const { id } = req.params;
 
-
-  const query = `UPDATE TablesFood SET status = null  WHERE status = ${id} `;
-
-  db.query(query,  (err, data) => {
+  db.query('UPDATE TablesFood SET status = null  WHERE status = ?', [id],  (err, data) => {
     if (err) throw err;
   });
 
-  const sql = `DELETE FROM Diners WHERE id = ${id}`;
-  db.query(sql,  (err, result) => {
+  db.query('DELETE FROM Diners WHERE id = ?',[id],  (err, result) => {
     if (err) throw err;
     res.send({numberId: id})
   });

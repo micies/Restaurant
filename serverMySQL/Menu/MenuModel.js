@@ -16,7 +16,7 @@ export const createTableMenu = (req, res, next) => {
 
 
 export const getAllMenu = (req, res, next) => {
-  db.query(`SELECT * FROM ${table_name}`, function (err, result, fields) {
+  db.query(`SELECT * FROM ${table_name}`, (err, result, fields) => {
     if (err) throw err;
     res.send(result);
   });
@@ -25,8 +25,9 @@ export const getAllMenu = (req, res, next) => {
 
 
 export const getByIdMenu = (req, res, next) => {
+  
   const { id } = req.params;
-  db.query(`SELECT * FROM ${table_name} WHERE id = ${id}`, function (err, result) {
+  db.query('SELECT * FROM ${table_name} WHERE id = ?',[id], (err, result) => {
     if (err) throw err;
     res.send(result);
   });
@@ -36,8 +37,7 @@ export const getByIdMenu = (req, res, next) => {
 
 export const createMenu = (req, res, next) => {
 
-  const sql = `INSERT INTO ${table_name} (category, name, price) VALUES ('${req.body.category}', '${req.body.name}', '${req.body.price}')`
-  db.query(sql, function (err, result) {
+  db.query('INSERT INTO ${table_name} (category, name, price) VALUES (?,?,?)',[req.body.category, req.body.name, req.body.price], (err, result) => {
     if (err) throw err;(result)
     res.send(result);;
   })
@@ -47,9 +47,7 @@ export const createMenu = (req, res, next) => {
 export const updateMenu = (req, res, next) => {
   const { id } = req.params;
 
-  const query = `UPDATE ${table_name} SET category = '${req.body.category}', name = '${req.body.name}', price = '${req.body.price}' WHERE id = '${id}' `;
-  db.query(query, function (err, data) {
-
+  db.query(`UPDATE ${table_name} SET category = ?, name = ?, price = ? WHERE id = ? `, [req.body.category, req.body.name, req.body.price, id], (err, data) => {
     if (err) throw err;
     res.send(data);;
   });
@@ -61,8 +59,7 @@ export const updateMenu = (req, res, next) => {
 export const deleteMenu = (req, res, next) => {
   const { id } = req.params;
 
-    const sql = `DELETE FROM ${table_name} WHERE id = ${id}`;
-    db.query(sql, function (err, result) {
+    db.query('DELETE FROM ${table_name} WHERE id = ?',[id], (err, result) => {
       if (err) throw err;
       res.send("Number of records deleted: " + result.affectedRows);
     });
