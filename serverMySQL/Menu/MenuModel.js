@@ -14,7 +14,7 @@ export const createTableMenu = (req, res, next) => {
 
 
 export const getAllMenu = (req, res, next) => {
-  db.query('SELECT id, capacity, status FROM Menu', (err, result, fields) => {
+  db.query('SELECT id, category, name, price FROM Menu', (err, result, fields) => {
     if (err) throw err;
     res.send(result);
   });
@@ -25,7 +25,7 @@ export const getAllMenu = (req, res, next) => {
 export const getByIdMenu = (req, res, next) => {
   
   const { id } = req.params;
-  db.query('SELECT id, capacity, status FROM Menu WHERE id = ?',[id], (err, result) => {
+  db.query('SELECT id, category, name, price FROM Menu WHERE id = ?',[id], (err, result) => {
     if (err) throw err;
     res.send(result);
   });

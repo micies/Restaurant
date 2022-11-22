@@ -1,15 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
-import Puttables from './components/tables/put';
-import HomeTabes from './components/tables/TableTables';
-import GetIdTables from './components/tables/get_by_id';
+import Puttables from './components/tables/updateTable';
+import HomeTabes from './components/tables/Tables';
+import GetIdTables from './components/tables/getTable';
 // import HomeDiners from './components/diners/_HomeAndDelete';
-import CreateDiners from './components/diners/post';
-import GetIdDiners from './components/diners/get_by_id';
-import PutDiners from './components/diners/put.js';
-import HomeMenu from './components/menu/TableMenu';
-import GetIdMenu from './components/menu/get_by_id';
+import CreateDiners from './components/diners/createDiner';
+import GetIdDiners from './components/diners/getDiner';
+import PutDiners from './components/diners/updateDiner.js';
+import HomeMenu from './components/menu/Menu';
+import GetIdMenu from './components/menu/getPartOfMenu';
 import Reservation from './components/diners/reservation';
 import { PutDinersClass } from './components/dinersClass/putClass';
 import { PostDinersClass } from './components/dinersClass/postClass';
@@ -24,10 +24,10 @@ import { PostTablesClass } from './components/tablesClass/postClass';
 import { GetByIdTablesClass } from './components/tablesClass/getByIdClass';
 import { HomeTablesClass } from './components/tablesClass/home';
 import { ReservationClass } from './components/dinersClass/reservationClass';
-import PostTables from './components/tables/post';
-import UpdateMenu from './components/menu/put';
-import CreateMenu from './components/menu/post';
-import DinersTable from './components/diners/TableDiners'
+import PostTables from './components/tables/createTable';
+import UpdateMenu from './components/menu/updateMenu';
+import CreateMenu from './components/menu/createMenu';
+import DinersTable from './components/diners/Diners'
 
 
 

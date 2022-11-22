@@ -41,8 +41,7 @@ export default function Reservation() {
   }, [!render]);
 
   const saveOrderQuantities = () => {
-    let str = JSON.stringify(orderQuantities);
-    PostById(reservePostUrl, id, { reservations: str }, setResponse);
+    PostById(reservePostUrl, id, { reservations: orderQuantities }, setResponse);
     navigate('/diners');
   }
 
@@ -80,13 +79,13 @@ export default function Reservation() {
           </thead>
           <tbody>
             {menuDishes.map(({ name, category, price, id }, i) => (
-              <tr key={i}>
+              <tr key={id}>
                 <td>{name}</td>
                 <td>{category}</td>
                 <td>{price}</td>
                 <input className="small"
                   name={id}
-                  value={orderQuantities[id] || ""}
+                  value={orderQuantities[id]||""}
                   type="number"
                   min="0"
                   onChange={(e) => handleChange(e, id)}

@@ -20,14 +20,13 @@ export default function DinersTable() {
   const [allDiners, setAllDiners] = useState([]);
   const [massege, setMassege] = useState([]);
   const [response, setResponse] = useState({});
-  const [reload, setReload] = useState([false]);
 
 
   const notify = () => { toast.success('הפעולה בוצעה בהצלחה') };
 
   useEffect(() => {
     Get(setAllDiners, BaseUrlDiners)
-  }, [reload]);
+  }, []);
 
   const deleteUserDiners = (id) => {
     Delete(id, BaseUrlDiners, setResponse)

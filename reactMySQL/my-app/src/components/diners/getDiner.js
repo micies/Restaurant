@@ -21,16 +21,17 @@ export default function GetIdDiners() {
 
 useEffect(() => {
   GetByIdModel(UrlDiner, id, setDiner)
- 
+  
 }, []);
+console.log(diner)
 
   return (
     <div>
         <h3>פרטים</h3>
           שם:
-          <GetInput value = {diner.name}  disabled={true}/>
+          <GetInput value = {""||diner.name}  disabled={true}/>
           גודל קבוצה:
-          <GetInput value = {diner.size}  disabled={true}/>
+          <GetInput value = {""||diner.size}  disabled={true}/>
 
       <Button href='/diners' >חזור</Button> {' '}
 

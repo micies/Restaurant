@@ -1,3 +1,4 @@
+import e from "cors";
 import { db } from "../dbConnect.js";
 import { SQL } from "../PromiseSQL.js";
 
@@ -19,21 +20,28 @@ export const calculateSumOrder = async (req, res, next) => {
 export const postReservation = (req, res, next) => {
   
   const { id } = req.params;
-  const reservations = JSON.stringify(req.body.reservations);
-
-  db.query('UPDATE Diners SET reservations = ? WHERE id = ?',[reservations, id], (err, data) => {
+  db.query('DELETE FROM Orders WHERE idTable = ?',[id], (err, result) => {
     if (err) throw err;
-    res.send(data)
-
   });
+
+  const reservations = req.body.reservations;
+   
+  for (const [key, value] of Object.entries(reservations)) {
+    SQL(`INSERT INTO Orders (idTable, idDish, quantity) VALUES (${id}, ${key}, ${value})`)
+  }
+
 };
 
 export const getReservation = (req, res, next) => {
   const { id } = req.params;
 
-  db.query('SELECT reservations FROM Diners WHERE id =?', [id],  (err, result) => {
+  db.query(`SELECT  idDish, quantity FROM Orders WHERE idTable =${id}`,  (err, result) => {
     if (err) throw err;
-    res.send(result[0].reservations);
+    let dishes = {}
+    for (let element of result){
+      dishes[element['idDish']]= element['quantity']
+    }
+
+    res.send(dishes);
   });
 };
-

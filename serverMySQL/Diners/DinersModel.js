@@ -33,28 +33,28 @@ export const getByIdDiners = (req, res, next) => {
 export const createDiner = (req, res, next) => {
 
     let sql = 
-    db.query('INSERT INTO Diners (name, size, queue, reservations, sum) VALUES (?,?,?,?,?)',[req.body.name,req.body.size, "tobesited", {}, 0 ], (err, result) => {
+    db.query('INSERT INTO Diners (name, size, queue, sum) VALUES (?,?,?,?)',[req.body.name,req.body.size, "tobesited", 0 ], (err, result) => {
       if (err) {
         throw err
       }
      else{ console.log("test")
-      res.send(dataFromUser)};
+      res.send(result)};
     });
 };
 
 
 export const sitByPeriority = async (req, res, next) => {
 
-  let diners = await SQL('SELECT id, name, size, queue, table1 ,lastUpdated  FROM Diners WHERE queue =tobesited ORDER BY size DESC ,lastUpdated')
+  let diners = await SQL('SELECT id, name, size, queue, table1 ,lastUpdated  FROM Diners WHERE queue ="tobesited" ORDER BY size DESC ,lastUpdated')
   let tables = await SQL('SELECT id,capacity, status  FROM TablesFood ORDER BY capacity')
-
+  
   chunkLoop: for (let diner of diners) {
      for (let table of tables) {
 
       if (diner.queue != "sit" && table.status == null) {
         if (diner.size <= table.capacity) {
-          await SQL('UPDATE Diners SET queue = sit, table1 = ? WHERE id = ?',[table.id, diner.id]);
-          await SQL('UPDATE TablesFood SET status = ? WHERE id = ? ', [diner.id, table.id]);
+          await SQL(`UPDATE Diners SET queue ="sit", table1 = ${table.id} WHERE id = ${diner.id}`);
+          await SQL(`UPDATE TablesFood SET status = ${diner.id} WHERE id = ${table.id} `);
           break chunkLoop
           
         }
