@@ -9,10 +9,10 @@ OutherRouter.get("/orders/createtable", createTableOrders);
 OutherRouter.get("/category/createtable", createTableCategory);
 
 OutherRouter.post("/category", createCategoryController)
-OutherRouter.get("/category", getAllCategoryController)
+OutherRouter.get("/category", getAllCategoryController) 
 OutherRouter.put('/category/:id', updateCategoryController)
 OutherRouter.get("/category/:id", getByIdCategoryController)
 OutherRouter.delete('/category/:id', deleteCategoryController)
 
 
-export default OutherRouter;
+export default OutherRouter; 

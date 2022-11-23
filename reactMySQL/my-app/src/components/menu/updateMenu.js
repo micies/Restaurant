@@ -30,7 +30,7 @@ export default function UpdateMenu() {
   }
 
   const handleSubmit = () => {
-    if (menu.name.length === 0 || menu.category.length === 0 || menu.price.length === 0) {
+    if (menu.nameMenu.length === 0 || menu.category.length === 0 || menu.price.length === 0) {
       return alert("There are empty fields")
     }
     Put(baseURL, id, menu, setResponse)
@@ -43,9 +43,9 @@ export default function UpdateMenu() {
     <div>
       <div > Update Menu </div>
       Category
-      <GetInput value={menu.category} type={"text"} onChange={handleChange} name={"category"} />
+      <GetInput value={menu.id_category	} type={"text"} onChange={handleChange} name={"id_category"} />
       Name
-      <GetInput value={menu.name} type={"text"} onChange={handleChange} name={"name"} />
+      <GetInput value={menu.nameMenu} type={"text"} onChange={handleChange} name={"name"} />
       Price
       <GetInput value={menu.price} onChange={handleChange} type={"number"} name={"price"} />
 

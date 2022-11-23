@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap"
 import { useNavigate } from 'react-router-dom';
 
-import { Post } from "../../BaseService";
+import { Get, Post } from "../../BaseService";
 import { GetInput } from "../../componentsProps";
 
 
@@ -11,27 +11,36 @@ export default function CreateMenu() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
   const [menu, setMenu] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [response, setResponse] = useState({});
 
 
-  const baseURL = BASE_URL + "menu";
+  const baseUrlMenu = BASE_URL + "menu";
+  const baseUrlCategory = BASE_URL + "category"
 
 
   const navigate = useNavigate()
 
+  useEffect(() => {
+    Get(setCategories, baseUrlCategory)
+  }, []);
+
   const handleChange = (e) => {
+    console.log(e.target)
     setMenu({
-      ...menu, [e.target.name]: e.target.value
+      ...menu, [e.target.name]: +e.target.value || e.target.value
     })
+    console.log(menu)
   }
 
   const handleSubmit = () => {
-    if (!menu.name || !menu.category || !menu.price) {
+    if (!menu.nameMenu || !menu.price) {
       return alert("There are empty fields")
-    }
-    Post(baseURL, menu, setResponse)
+    } 
+    Post(baseUrlMenu, menu, setResponse)
     navigate('/menu');
   };
+
 
   if (response.errorMessage) {
     return alert(response.errorMessage)
@@ -40,10 +49,14 @@ export default function CreateMenu() {
   return (
     <div>
       <div > Create Menu </div>
-      Category
-      <GetInput type={"text"} onChange={handleChange} name={"category"} />
-      Name
-      <GetInput type={"text"} onChange={handleChange} name={"name"} />
+      <div>Category</div>
+        <select name="id_category" onChange={handleChange}>
+      {categories.map(item => 
+        <option  value={item.id_category} key={item.name} >{item.name}</option>
+        )}      
+        </select>
+      <div>Name</div>
+      <GetInput type={"text"} onChange={handleChange} name={"nameMenu"} />
       Price
       <GetInput type={"number"} onChange={handleChange} name={"price"} />
 

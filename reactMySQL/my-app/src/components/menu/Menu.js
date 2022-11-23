@@ -19,7 +19,7 @@ export default function TableMenu() {
   const [tables, setTables] = useState([]);
   const [response, setResponse] = useState({});
 
-  
+  console.log(tables)
   const BaseUrl = BASE_URL + "menu"
 
   useEffect(() => {
@@ -58,8 +58,8 @@ const deleteMenu = (id) => {
         <tbody>
           {tables.map((states, i) =>
             <tr key={i}>
+              <td>{states.nameMenu}</td>
               <td>{states.name}</td>
-              <td>{states.category}</td>
               <td>{states.price}</td>
               <td>
                 <Modal1 confirmFunc= {()=>deleteMenu(states.id)} text={"? האם אתה בטוח שאתה מעוניין למחוק את"} />

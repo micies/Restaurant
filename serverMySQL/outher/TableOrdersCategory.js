@@ -13,7 +13,8 @@ export const createTableOrders = (req, res, next) => {
 
   export const createTableCategory = (req, res, next) => {
     let sql =
-      "CREATE TABLE Category (Category VARCHAR(255), name VARCHAR(255))";
+
+      "CREATE TABLE Category (id_category INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255))";
 
     db.query(sql, (err, result) => {
       if (err) throw err;

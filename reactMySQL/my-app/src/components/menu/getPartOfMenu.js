@@ -32,9 +32,9 @@ export default function GetIdMenu() {
     <div>
       <h1>Show Menu</h1>
       name:
-      <GetInput value={menu.name} disabled={true} />
+      <GetInput value={menu.nameMenu} disabled={true} />
       category:
-      <GetInput value={menu.category} disabled={true} />
+      <GetInput value={menu.id_category	} disabled={true} />
       price:
       <GetInput value={menu.price} disabled={true} />
       <Button href='/menu' >Back</Button> {' '}

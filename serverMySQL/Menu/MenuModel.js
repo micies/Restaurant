@@ -1,10 +1,13 @@
 import { db } from "../dbConnect.js";
+import { SQL } from "../PromiseSQL.js";
 
 
 
 
 export const createTableMenu = (req, res, next) => {
-  const sql = "CREATE TABLE Menu (id INT AUTO_INCREMENT PRIMARY KEY,`lastUpdated` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, category VARCHAR(255), name VARCHAR(255), price DECIMAL(10,2))";
+  const sql = 
+  "CREATE TABLE Menu (id INT AUTO_INCREMENT PRIMARY KEY,`lastUpdated` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, id_category Int, nameMenu VARCHAR(255), price DECIMAL(10,2))";
+
   db.query(sql, function (err, result) {
       if (err) throw err;
       res.send("Table created");
@@ -12,30 +15,36 @@ export const createTableMenu = (req, res, next) => {
 
 };
 
+export const getAllMenu = (req, res) => {
 
-export const getAllMenu = (req, res, next) => {
-  db.query('SELECT id, category, name, price FROM Menu', (err, result, fields) => {
-    if (err) throw err;
-    res.send(result);
-  });
-};
+const sql = "SELECT Menu.id, Menu.id_category, Menu.nameMenu, Menu.price, Category.name FROM Menu INNER JOIN Category ON Menu.id_category=Category.id_category";
+
+db.query(sql, function (err, result) {
+  if (err) throw err;
+  res.send(result);
+});
+}
 
 
-
-export const getByIdMenu = (req, res, next) => {
+export const getByIdMenu = async(req, res, next) => {
   
   const { id } = req.params;
-  db.query('SELECT id, category, name, price FROM Menu WHERE id = ?',[id], (err, result) => {
-    if (err) throw err;
-    res.send(result);
-  });
+  let menu = await SQL(`SELECT id, id_category, nameMenu, price FROM Menu WHERE id = ${id}`)
+  console.log(menu)
+
+  let category = await SQL(`SELECT name FROM Category WHERE id_category = ${menu[0].id_category}`)
+  console.log(category[0].name)
+  menu[0].id_category = category[0].name
+  res.send(menu)
+
+
 
 }
 
 
 export const createMenu = (req, res, next) => {
 
-  db.query('INSERT INTO Menu (category, name, price) VALUES (?,?,?)',[req.body.category, req.body.name, req.body.price], (err, result) => {
+  db.query('INSERT INTO Menu (id_category	, nameMenu, price) VALUES (?,?,?)',[req.body.id_category, req.body.nameMenu, req.body.price], (err, result) => {
     if (err) throw err;(result)
     res.send(result);;
   })
@@ -45,7 +54,7 @@ export const createMenu = (req, res, next) => {
 export const updateMenu = (req, res, next) => {
   const { id } = req.params;
 
-  db.query('UPDATE Menu SET category = ?, name = ?, price = ? WHERE id = ?', [req.body.category, req.body.name, req.body.price, id], (err, data) => {
+  db.query('UPDATE Menu SET id_category	 = ?, nameMenu = ?, price = ? WHERE id = ?', [req.body.category, req.body.nameMenu, req.body.price, id], (err, data) => {
     if (err) throw err;
     res.send(data);;
   });
