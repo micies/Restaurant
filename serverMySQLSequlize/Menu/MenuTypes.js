@@ -31,9 +31,6 @@ export const Menu = db.define('Menu', {
     }
 })
 
-Menu.associate = ()=> {
-    Menu.belongsTo(Category, {foreignKey: 'id_category'});
 
-}
 
 

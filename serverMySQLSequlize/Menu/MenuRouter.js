@@ -12,8 +12,6 @@ routerMenu.delete('/menu/:id', deleteMenu)
 
 
 
-
-
 routerMenu.get("/", (req, res) => {
   res.send("Let's build a CRUD API!");
 });

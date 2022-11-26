@@ -1,4 +1,4 @@
-import {Category} from "./CategoryTypes.js"
+import { Category } from "./CategoryTypes.js"
 
 
 
@@ -7,30 +7,35 @@ export let CategoryFunctions = {
     create: create,
     findById: findById,
     deleteById: deleteById,
-    updateGig: updateGig
+    updateItem: updateItem
 }
 
-function findAll() {
+
+const findAll = () => {
     return Category.findAll();
 }
 
-function findById(id) {
+
+const findById = (id) => {
     return Category.findByPk(id);
 }
 
-function deleteById(id) {
+
+const deleteById = (id) => {
     return Category.destroy({ where: { id_category: id } });
 }
 
-function create(gig) {
-    var newGig = new Category(gig);
+
+const create = (gig) => {
+    let newGig = new Category(gig);
     return newGig.save();
 }
 
-function updateGig(gig, id) {
-    var updateGig = {
-    category: gig.name
-  }
+
+const updateItem = (gig, id) => {
+    const updateGig = {
+        category: gig.name
+    }
     return Category.update(updateGig, { where: { id: id } });
 }
 

@@ -2,7 +2,7 @@ import { MenuFunctions } from "../Menu/MenuController.js";
 import { OrederFunctions } from "./OrderController.js"
 import { Orders } from "./OrderTypes.js";
 
-export function createOrder(req, res) {
+export const createOrder=(req, res) =>{
     const gig = req.body;
     OrederFunctions.create(gig).
         then((data) => {
@@ -13,7 +13,7 @@ export function createOrder(req, res) {
         });
 }
 
-export function getByIdOrder(req, res) {
+export const getByIdOrder=(req, res)=> {
     Orders.removeAttribute("id");
 
     Orders.findAll({
@@ -33,11 +33,11 @@ export function getByIdOrder(req, res) {
         });
 }
 
-export function deleteOrder(req, res) {
+export const deleteOrder=(req, res) =>{
     OrederFunctions.deleteById(req.params.id).
         then((data) => {
             res.status(200).json({
-                message: "Gig deleted successfully",
+                message: `${req.params.id} deleted successfully`,
                 gig: data
             })
         })
@@ -46,11 +46,11 @@ export function deleteOrder(req, res) {
         });
 }
 
-export function updateOrder(req, res) {
-    OrederFunctions.updateGig(req.body, req.params.id).
+export const updateOrder=(req, res) =>{
+    OrederFunctions.updateItem(req.body, req.params.id).
         then((data) => {
             res.status(200).json({
-                message: "Gig updated successfully",
+                message: `${req.params.id} updated successfully`,
                 gig: data
             })
         })
@@ -104,7 +104,7 @@ export const postReservation = async(req, res, next) => {
                 const item = await OrederFunctions.create(newItem).catch((err)=>{console.log(err)})
                 return res.send ({item, created: true});
             }
-            const item = await OrederFunctions.updateGig(newItem, {where:{idTable: req.params.id, idDish:key}}).catch((err)=>{console.log(err)});
+            const item = await OrederFunctions.updateItem(newItem, {where:{idTable: req.params.id, idDish:key}}).catch((err)=>{console.log(err)});
             return res.send ({item, created: false});
         }
 

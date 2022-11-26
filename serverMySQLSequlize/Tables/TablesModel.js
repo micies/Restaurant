@@ -1,7 +1,7 @@
 import { TablesFunctions } from "./TablesController.js"
 
 
-export function createTable(req, res) {
+export const createTable = (req, res) => {
     const gig = {
         capacity: req.body.capacity
     };
@@ -14,7 +14,8 @@ export function createTable(req, res) {
         });
 }
 
-export function getByIdTable(req, res) {
+
+export const getByIdTable = (req, res) => {
     TablesFunctions.findById(req.params.id).
         then((data) => {
             res.send(data);
@@ -24,11 +25,12 @@ export function getByIdTable(req, res) {
         });
 }
 
-export function deleteTable(req, res) {
+
+export const deleteTable = (req, res) => {
     TablesFunctions.deleteById(req.params.id).
         then((data) => {
             res.status(200).json({
-                message: "Gig deleted successfully",
+                message: `${req.params.id} deleted successfully`,
                 gig: data
             })
         })
@@ -37,11 +39,12 @@ export function deleteTable(req, res) {
         });
 }
 
-export function updateTable(req, res) {
-    TablesFunctions.updateGig(req.body, req.params.id).
+
+export const updateTable = (req, res) => {
+    TablesFunctions.updateItem(req.body, req.params.id).
         then((data) => {
             res.status(200).json({
-                message: "Gig updated successfully",
+                message: `${req.params.id} updated successfully`,
                 gig: data
             })
         })
@@ -49,6 +52,7 @@ export function updateTable(req, res) {
             console.log(error);
         });
 }
+
 
 export const getAllTables = (req, res) => {
     TablesFunctions.findAll().

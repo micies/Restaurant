@@ -37,7 +37,7 @@ export function getByIdDiner(req, res) {
 export async function deleteDiner (req, res) {
 
     await OrederFunctions.deleteById(req.params.id).catch((err)=>{console.log(err)});
-    var updateGig = {
+    const updateGig = {
         status: null
       }
     await Tables.update(updateGig, { where: { status: req.params.id} }).catch((err)=>{console.log(err)})
@@ -45,7 +45,7 @@ export async function deleteDiner (req, res) {
     DinersFunctions.deleteById(req.params.id).
         then((data) => {
             res.status(200).json({
-                message: "Gig deleted successfully",
+                message: `${req.params.id} deleted successfully`,
                 gig: data
             })
         })
@@ -55,10 +55,10 @@ export async function deleteDiner (req, res) {
 }
 
 export function updateDiner(req, res) {
-    DinersFunctions.updateGig(req.body, req.params.id).
+    DinersFunctions.updateItem(req.body, req.params.id).
         then((data) => {
             res.status(200).json({
-                message: "Gig updated successfully",
+                message: `${req.params.id} updated successfully`,
                 gig: data
             })
         })

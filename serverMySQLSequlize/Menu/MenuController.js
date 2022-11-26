@@ -1,4 +1,4 @@
-import {Menu} from "./MenuTypes.js"
+import { Menu } from "./MenuTypes.js"
 
 
 
@@ -7,34 +7,35 @@ export let MenuFunctions = {
     create: create,
     findById: findById,
     deleteById: deleteById,
-    updateGig: updateGig
+    updateItem: updateItem
 }
 
-function findAll() {
+
+const findAll = () => {
     return Menu.findAll();
 }
 
 
-function findById(id) {
+const findById = (id) => {
     return Menu.findByPk(id);
 }
 
-function deleteById(id) {
+const deleteById = (id) => {
     return Menu.destroy({ where: { id: id } });
 }
 
-function create(gig) {
-    var newGig = new Menu(gig);
-    return newGig.save();
+const create = (item) => {
+    let newItem = new Menu(item);
+    return newItem.save();
 }
 
-function updateGig(gig, id) {
-    var updateGig = {
-    category: gig.category,
-    nameMenu: gig.name,
-    price: gig.price
-  }
-    return Menu.update(updateGig, { where: { id: id } });
+const updateItem = (gig, id) => {
+    let updateItem = {
+        category: gig.category,
+        nameMenu: gig.name,
+        price: gig.price
+    }
+    return Menu.update(updateItem, { where: { id: id } });
 }
 
 

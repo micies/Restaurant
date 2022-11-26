@@ -2,7 +2,7 @@ import { CategoryFunctions } from "./CategoryController.js"
 import { Category } from "./CategoryTypes.js";
 
 
-export function createCategory(req, res) {
+export const createCategory = (req, res) => {
     const gig = {
         category: req.body.name
     };
@@ -15,7 +15,8 @@ export function createCategory(req, res) {
         });
 }
 
-export function getByIdCategory(req, res) {
+
+export const getByIdCategory = (req, res) => {
     CategoryFunctions.findById(req.params.id).
         then((data) => {
             res.send(data);
@@ -25,11 +26,12 @@ export function getByIdCategory(req, res) {
         });
 }
 
-export function deleteCategory(req, res) {
+
+export const deleteCategory = (req, res) => {
     CategoryFunctions.deleteById(req.params.id).
         then((data) => {
             res.status(200).json({
-                message: "Gig deleted successfully",
+                message: `${req.params.id} deleted successfully`,
                 gig: data
             })
         })
@@ -38,11 +40,12 @@ export function deleteCategory(req, res) {
         });
 }
 
-export function updateCategory(req, res) {
-    CategoryFunctions.updateGig(req.body, req.params.id).
+
+export const updateCategory = (req, res) => {
+    CategoryFunctions.updateItem(req.body, req.params.id).
         then((data) => {
             res.status(200).json({
-                message: "Gig updated successfully",
+                message: `${req.params.id} updated successfully`,
                 gig: data
             })
         })
@@ -50,6 +53,7 @@ export function updateCategory(req, res) {
             console.log(error);
         });
 }
+
 
 export const getAllCategory = (req, res) => {
     Category.removeAttribute("id");

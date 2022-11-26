@@ -1,4 +1,4 @@
-import {Diners} from "./DinersTypes.js"
+import { Diners } from "./DinersTypes.js"
 
 
 
@@ -7,31 +7,35 @@ export let DinersFunctions = {
     create: create,
     findById: findById,
     deleteById: deleteById,
-    updateGig: updateGig
+    updateItem: updateItem
 }
 
-function findAll() {
+
+const findAll = () => {
     return Diners.findAll();
 }
 
-function findById(id) {
+
+const findById = (id) => {
     return Diners.findByPk(id);
 }
 
-function deleteById(id) {
+
+const deleteById = (id) => {
     return Diners.destroy({ where: { id: id } });
 }
 
-function create(gig) {
-    var newGig = new Diners(gig);
+
+const create = (gig) => {
+    let newGig = new Diners(gig);
     return newGig.save();
 }
 
-function updateGig(gig, id) {
-    var updateGig = {
-        name:gig.name,
-        size:gig.size,
 
+const updateItem = (gig, id) => {
+    const updateGig = {
+        name: gig.name,
+        size: gig.size
     };
     return Diners.update(updateGig, { where: { id: id } });
 }
