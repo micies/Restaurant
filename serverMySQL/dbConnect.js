@@ -7,6 +7,7 @@ dotenv.config()
 
 
 const envFile = process.env
+console.log(envFile.SERVER_HOST, envFile.SERVER_USER, envFile.SERVER_PASS, envFile.SERVER_PORT)
 export const db = mysql.createConnection({
     host: envFile.SERVER_HOST,
     user: envFile.SERVER_USER,

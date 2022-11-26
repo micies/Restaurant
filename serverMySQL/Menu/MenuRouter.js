@@ -6,7 +6,6 @@ import { createTableMenu} from './MenuModel.js';
 
 const routerMenu  = express.Router();
 
-// routerMenu.get("/1", getTest)
 routerMenu.get("/menu/createtable", createTableMenu);
 routerMenu.post("/menu", createMenuController)
 routerMenu.get("/menu", getAllMenuController)

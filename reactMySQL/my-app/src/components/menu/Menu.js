@@ -19,7 +19,6 @@ export default function TableMenu() {
   const [tables, setTables] = useState([]);
   const [response, setResponse] = useState({});
 
-  console.log(tables)
   const BaseUrl = BASE_URL + "menu"
 
   useEffect(() => {

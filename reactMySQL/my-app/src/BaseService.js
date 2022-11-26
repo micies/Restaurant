@@ -79,7 +79,7 @@ export function GetByIdModel(BaseUrl, id, state) {
       }
       else {
         console.log(res.data)
-        state(res.data[0]);
+        state(res.data);
       }
     }).catch(error => {
       state({ errorMessage: error.message });

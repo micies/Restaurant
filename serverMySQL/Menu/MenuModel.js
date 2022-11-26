@@ -17,28 +17,25 @@ export const createTableMenu = (req, res, next) => {
 
 export const getAllMenu = (req, res) => {
 
-const sql = "SELECT Menu.id, Menu.id_category, Menu.nameMenu, Menu.price, Category.name FROM Menu INNER JOIN Category ON Menu.id_category=Category.id_category";
+const sql = "SELECT m.id, m.id_category, m.nameMenu, m.price, c.name FROM Menu as m INNER JOIN Category as c ON m.id_category=c.id_category";
 
 db.query(sql, function (err, result) {
   if (err) throw err;
   res.send(result);
 });
-}
+} 
 
 
 export const getByIdMenu = async(req, res, next) => {
   
   const { id } = req.params;
-  let menu = await SQL(`SELECT id, id_category, nameMenu, price FROM Menu WHERE id = ${id}`)
+  let menu = await SQL([`SELECT id, id_category, nameMenu, price FROM Menu WHERE id = ?`, [id]])
   console.log(menu)
 
-  let category = await SQL(`SELECT name FROM Category WHERE id_category = ${menu[0].id_category}`)
+  let category = await SQL([`SELECT name FROM Category WHERE id_category = ?`, [menu[0].id_category]])
   console.log(category[0].name)
   menu[0].id_category = category[0].name
   res.send(menu)
-
-
-
 }
 
 

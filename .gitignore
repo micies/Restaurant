@@ -5,4 +5,7 @@
 /serverMySQL/node_modules
 /node_modules
 /serverFirebaseTest
+/serverMySQLSequlize/node_modules
+/serverMySQLSequlize/.env
+
 

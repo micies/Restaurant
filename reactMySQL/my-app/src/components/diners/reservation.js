@@ -78,10 +78,10 @@ export default function Reservation() {
             </tr>
           </thead>
           <tbody>
-            {menuDishes.map(({ name, category, price, id }, i) => (
+            {menuDishes.map(({ name, nameMenu, price, id }, i) => (
               <tr key={id}>
+                <td>{nameMenu}</td>
                 <td>{name}</td>
-                <td>{category}</td>
                 <td>{price}</td>
                 <input className="small"
                   name={id}
@@ -96,13 +96,13 @@ export default function Reservation() {
         </table>
       )}
 
-      <h1><Badge bg="success">the sum is: {calculateSumOrder.sum} </Badge>{' '}</h1>
-      <Button href='/diners'>Back</Button>{' '}
+      <h1><Badge bg="success">the sum is: {calculateSumOrder.sum} </Badge>{'    '}</h1>
+      <Button href='/diners'>Back</Button>{' <> '}
 
-      <Modal1 confirmFunc={() => deleteUserDiners(id)} text={"? האם אתה בטוח שאתה מעוניין למחוק את"} />
+      <Modal1 confirmFunc={() => deleteUserDiners(id)} text={"? האם אתה בטוח שאתה מעוניין למחוק את"} />{'   <> '}
 
       <Button onClick={saveOrderQuantities}>
-        Post Data
+        Create Order
       </Button>
     </div>
   );

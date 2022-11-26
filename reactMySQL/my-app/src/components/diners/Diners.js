@@ -24,9 +24,9 @@ export default function DinersTable() {
 
   const notify = () => { toast.success('הפעולה בוצעה בהצלחה') };
 
-  useEffect(() => {
-    Get(setAllDiners, BaseUrlDiners)
-  }, []);
+    useEffect(() => {
+      Get(setAllDiners, BaseUrlDiners)
+    }, []);
 
   const deleteUserDiners = (id) => {
     Delete(id, BaseUrlDiners, setResponse)

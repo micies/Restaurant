@@ -26,7 +26,6 @@ export default function CreateMenu() {
   }, []);
 
   const handleChange = (e) => {
-    console.log(e.target)
     setMenu({
       ...menu, [e.target.name]: +e.target.value || e.target.value
     })
@@ -50,7 +49,8 @@ export default function CreateMenu() {
     <div>
       <div > Create Menu </div>
       <div>Category</div>
-        <select name="id_category" onChange={handleChange}>
+        <select className="select" name="id_category" onChange={handleChange}>
+
       {categories.map(item => 
         <option  value={item.id_category} key={item.name} >{item.name}</option>
         )}      
