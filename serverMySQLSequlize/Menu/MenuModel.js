@@ -1,10 +1,7 @@
-// import { HasMany } from "sequelize";
-import { Association } from "sequelize";
 import { CategoryFunctions } from "../Category/CategoryController.js";
-import { Category } from "../Category/CategoryTypes.js";
-import { Menu } from "../Menu/MenuTypes.js";
+import {QueryTypes} from "sequelize";
 import { MenuFunctions } from "./MenuController.js"
-// import { Gig } from "../Category/CategoryTypes.js";
+import { db } from "../dbConnect.js";
 
 
 export function createMenu(req, res) {
@@ -60,8 +57,16 @@ export function updateMenu(req, res) {
         });
     }
     
-    export const getAllMenu = (req, res) => {
-        MenuFunctions.findAll().
+    export const getAllMenu = async(req, res) => {
+            const sql = "SELECT m.id, m.id_category, m.nameMenu, m.price, c.name FROM Menu as m INNER JOIN Category as c ON m.id_category=c.id_category";
+
+
+        await db.query(
+            sql,
+            {
+              type: QueryTypes.SELECT
+            }
+          ).
             then((data) => {
                 res.send(data);
             })

@@ -30,8 +30,9 @@ export const Menu = db.define('Menu', {
 
     }
 })
+
 Menu.associate = ()=> {
-    Menu.hasOne(Category, {foreignKey: 'id_category',sourceKey: 'id_category'});
+    Menu.belongsTo(Category, {foreignKey: 'id_category'});
 
 }
 

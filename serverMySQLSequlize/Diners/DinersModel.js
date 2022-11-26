@@ -1,7 +1,9 @@
 import { OrederFunctions } from "../Order/OrderController.js";
+import { Orders } from "../Order/OrderTypes.js";
 import { TablesFunctions } from "../Tables/TablesController.js";
 import { Tables } from "../Tables/TablesTypes.js";
 import {DinersFunctions} from "./DinersController.js"
+import { Diners } from "./DinersTypes.js";
 
 
 
@@ -36,9 +38,9 @@ export async function deleteDiner (req, res) {
 
     await OrederFunctions.deleteById(req.params.id).catch((err)=>{console.log(err)});
     var updateGig = {
-        statos: null
+        status: null
       }
-    await Tables.update(updateGig, { where: { id: id } }).catch((err)=>{console.log(err)})
+    await Tables.update(updateGig, { where: { status: req.params.id} }).catch((err)=>{console.log(err)})
 
     DinersFunctions.deleteById(req.params.id).
         then((data) => {
@@ -78,16 +80,16 @@ export const getAllDiners = (req, res) =>{
 
 export const sitByPeriority = async (req, res, next) => {
 
-    let diners = await DinersFunctions.findAll( {order: [["size", "DESC"],["lastUpdated", "ASC"]]}).catch((err)=>{console.log(err)})
-    let tables = await TablesFunctions.findAll({order:["lastUpdated", "ASC"]}).catch((err)=>{console.log(err)})
-  
+    let diners = await Diners.findAll( {order: [["size", "DESC"],["lastUpdated", "ASC"]]}).catch((err)=>{console.log(err)})
+    let tables = await Tables.findAll({order:["capacity"]}).catch((err)=>{console.log(err)})
   chunkLoop: for (let diner of diners) {
      for (let table of tables) {
-
+        console.log(diner.queue)
       if (diner.queue != "sit" && table.status == null) {
         if (diner.size <= table.capacity) {
-          await SQL([`UPDATE Diners SET queue ="sit", table1 = ? WHERE id = ?`,[table.id, diner.id ]]).catch((err)=>{console.log(err)});
-          await SQL([`UPDATE TablesFood SET status = ? WHERE id = ? `,[diner.id, table.id]]).catch((err)=>{console.log(err)});
+             await Diners.update({queue:"sit",table1 :table.id}, { where: { id: diner.id}} ).catch((err)=>{console.log(err)})
+             await Tables.update({status:diner.id } , { where: { id: table.id}}).catch((err)=>{console.log(err)})
+
           break chunkLoop
           
         }

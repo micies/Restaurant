@@ -71,8 +71,14 @@ export const getAllOrder = (req, res) => {
 
 
 export const calculateSumOrder = async (req, res, next) => {
+    Orders.removeAttribute("id");
+
     let sumPrice = 0;
-    let orders = await OrederFunctions.findById(req.params.id).catch((err)=>{console.log(err)})
+    let orders = await Orders.findAll({
+        where: {
+            idTable: req.params.id  
+        }
+      }).catch((err)=>{console.log(err)})
 
     for (const property of orders) {
         let calculate = await MenuFunctions.findById(property["idDish"]).catch((err)=>{console.log(err)});
