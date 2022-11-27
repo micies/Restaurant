@@ -2,6 +2,8 @@ import { CategoryFunctions } from "../Category/CategoryController.js";
 import { QueryTypes } from "sequelize";
 import { MenuFunctions } from "./MenuController.js"
 import { db } from "../dbConnect.js";
+import { Menu } from "./MenuTypes.js";
+import { Category } from "../Category/CategoryTypes.js";
 
 
 export const createMenu = (req, res) => {
@@ -68,7 +70,12 @@ export const getAllMenu = async (req, res) => {
         });
 }
 
+Menu.hasMany(Category);
+Category.belongsTo(Menu);
+export const ss = async(req, res)=>{
 
-
-
-
+    const users = await Menu.findAll({
+        include: { model: Category.category_id, required: true }
+      }).catch((err)=>{console.log(err)});
+      res.send(users)
+} 

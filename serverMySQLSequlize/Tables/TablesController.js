@@ -1,4 +1,4 @@
-import { Tables } from "./TablesTypes.js"
+import {Tables} from "./TablesTypes.js"
 
 
 
@@ -10,27 +10,27 @@ export let TablesFunctions = {
     updateItem: updateItem
 }
 
-const findAll = () => {
+function findAll() {
     return Tables.findAll();
 }
 
-const findById = (id) => {
+function findById(id) {
     return Tables.findByPk(id);
 }
 
-const deleteById = (id) => {
+function deleteById(id) {
     return Tables.destroy({ where: { id: id } });
 }
 
-const create = (gig) => {
-    const newGig = new Tables(gig);
+function create(gig) {
+    let newGig = new Tables(gig);
     return newGig.save();
 }
 
-const updateItem = (gig, id) => {
+function updateItem(gig, id) {
     const updateGig = {
-        category: gig.capacity
-    }
+    category: gig.capacity
+  }
     return Tables.update(updateGig, { where: { id: id } });
 }
 

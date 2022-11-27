@@ -1,4 +1,4 @@
-import { Category } from "./CategoryTypes.js"
+import {Category} from "./CategoryTypes.js"
 
 
 
@@ -10,32 +10,27 @@ export let CategoryFunctions = {
     updateItem: updateItem
 }
 
-
-const findAll = () => {
+function findAll() {
     return Category.findAll();
 }
 
-
-const findById = (id) => {
+function findById(id) {
     return Category.findByPk(id);
 }
 
-
-const deleteById = (id) => {
+function deleteById(id) {
     return Category.destroy({ where: { id_category: id } });
 }
 
-
-const create = (gig) => {
+function create(gig) {
     let newGig = new Category(gig);
     return newGig.save();
 }
 
-
-const updateItem = (gig, id) => {
+function updateItem(gig, id) {
     const updateGig = {
-        category: gig.name
-    }
+    category: gig.name
+  }
     return Category.update(updateGig, { where: { id: id } });
 }
 

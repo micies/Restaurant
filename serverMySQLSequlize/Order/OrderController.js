@@ -1,4 +1,4 @@
-import { Orders } from "./OrderTypes.js"
+import {Orders} from "./OrderTypes.js"
 
 
 
@@ -10,25 +10,24 @@ export let OrederFunctions = {
     updateItem: updateItem
 }
 
-const findAll = () => {
+function findAll() {
     return Orders.findAll();
 }
 
-const findById = (id) => {
+function findById(id) {
     return Orders.findByPk(id);
 }
 
-const deleteById = (id) => {
+function deleteById(id) {
     return Orders.destroy({ where: { idTable: id } });
 }
 
-const create = (gig) => {
-    const newGig = new Orders(gig);
+function create(gig) {
+    let newGig = new Orders(gig);
     return newGig.save();
 }
 
-const updateItem = (gig, whereId) => {
-
+function updateItem(gig, whereId) {
     return Orders.update(gig, { where: whereId });
 }
 

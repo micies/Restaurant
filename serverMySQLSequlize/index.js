@@ -4,7 +4,7 @@ import routerMenu from "./Menu/MenuRouter.js";
 import DinersRouter from './Diners/DinersRouter.js'
 import TablesRouter from './Tables/TablesRouter.js'
 import * as dotenv from 'dotenv'
-import routerOrder from "./Order/OrdersRouter.js";
+import routerOrder from "./Order/Orders.js";
 import routerCategory from "./Category/CategoryRouter.js"
 
 
