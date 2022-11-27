@@ -9,14 +9,14 @@ export let MenuFunctions = {
     findById: findById,
     deleteById: deleteById,
     updateItem: updateItem,
-    findAllCatt:findAllCatt
+    findAllByCattegory:findAllByCattegory
 }
 
 function findAll() {
     return Menu.findAll();
 }
 
-function findAllCatt() {
+function findAllByCattegory() {
         
     Category.hasMany(Menu, {targetKey:'id_category', foreignKey: 'id_category'})
     Menu.belongsTo(Category, {foreignKey: 'id_category'})

@@ -54,7 +54,7 @@ export const updateMenu = (req, res) => {
 
 export const getAllMenu = async (req, res) => {
 
-    let users = await MenuFunctions.findAllCatt().catch((err)=>{console.log(err)});
+    let users = await MenuFunctions.findAllByCattegory().catch((err)=>{console.log(err)});
 
     res.send(users)
 }

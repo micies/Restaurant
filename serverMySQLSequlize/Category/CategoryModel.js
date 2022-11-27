@@ -15,8 +15,6 @@ export const Category = db.define('Category', {
         type: STRING,
         allowNull: true
     }
-},{
-    freezeTableName: true
 })
 
 
