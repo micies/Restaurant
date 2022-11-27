@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { createTable, deleteTable, getAllTables, getByIdTable, updateTable } from './TablesModel.js';
+import { createTable, deleteTable, getAllTables, getByIdTable, updateTable } from './TablesService.js';
 
 
 

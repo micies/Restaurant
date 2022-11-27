@@ -1,6 +1,6 @@
 import express from 'express';
 
-import {createMenu, getAllMenu, updateMenu, getByIdMenu, deleteMenu, ss} from "./MenuModel.js"
+import {createMenu, getAllMenu, updateMenu, getByIdMenu, deleteMenu} from "./MenuService.js"
 
 const routerMenu  = express.Router();
 
@@ -9,9 +9,6 @@ routerMenu.get("/menu", getAllMenu)
 routerMenu.put('/menu/:id', updateMenu)
 routerMenu.get("/menu/:id", getByIdMenu)
 routerMenu.delete('/menu/:id', deleteMenu)
-routerMenu.get('/ss', ss)
-
-
 
 
 routerMenu.get("/", (req, res) => {

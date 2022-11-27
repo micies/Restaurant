@@ -1,6 +1,6 @@
 import express from 'express';
 
-import {createCategory, getAllCategory, updateCategory, getByIdCategory, deleteCategory} from "./CategoryModel.js"
+import {createCategory, getAllCategory, updateCategory, getByIdCategory, deleteCategory} from "./CategoryService.js"
 
 const routerCategory  = express.Router();
 

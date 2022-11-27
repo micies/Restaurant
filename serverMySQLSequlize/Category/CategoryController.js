@@ -1,4 +1,4 @@
-import {Category} from "./CategoryTypes.js"
+import {Category} from "./CategoryModel.js"
 
 
 
@@ -7,7 +7,7 @@ export let CategoryFunctions = {
     create: create,
     findById: findById,
     deleteById: deleteById,
-    updateItem: updateItem
+    updateItem: updateItem,
 }
 
 function findAll() {

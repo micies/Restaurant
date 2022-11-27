@@ -1,6 +1,6 @@
 import express from 'express';
 
-import {createOrder, getAllOrder, updateOrder, getByIdOrder, deleteOrder, postReservation, calculateSumOrder} from "./OrderModel.js"
+import {createOrder, getAllOrder, updateOrder, getByIdOrder, deleteOrder, postReservation, calculateSumOrder} from "./OrdersService.js"
 
 const routerOrder  = express.Router();
 

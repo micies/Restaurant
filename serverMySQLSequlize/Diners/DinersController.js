@@ -1,4 +1,4 @@
-import {Diners} from "./DinersTypes.js"
+import {Diners} from "./DinersModel.js"
 
 
 

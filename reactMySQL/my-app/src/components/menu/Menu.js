@@ -58,7 +58,7 @@ const deleteMenu = (id) => {
           {tables.map((states, i) =>
             <tr key={i}>
               <td>{states.nameMenu}</td>
-              <td>{states.name}</td>
+              <td>{states.Category.name}</td>
               <td>{states.price}</td>
               <td>
                 <Modal1 confirmFunc= {()=>deleteMenu(states.id)} text={"? האם אתה בטוח שאתה מעוניין למחוק את"} />

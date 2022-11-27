@@ -1,7 +1,7 @@
 import express from 'express';
 
 
-import { getAllDiners, getByIdDiner, deleteDiner, updateDiner, createDiner, sitByPeriority } from './DinersModel.js';
+import { getAllDiners, getByIdDiner, deleteDiner, updateDiner, createDiner, sitByPeriority } from './DinersService.js';
 
 
 

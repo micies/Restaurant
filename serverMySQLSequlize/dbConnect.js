@@ -11,7 +11,7 @@ export const db = new Sequelize(
     envFile.SERVER_USER,
     envFile.SERVER_PASS,
     {
-      host:  envFile.SERVER_HOST,
+      host:  envFile.SERVER_HOST, 
       dialect: 'mysql',
       define:
       {

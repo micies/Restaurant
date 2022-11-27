@@ -1,4 +1,4 @@
-import {Tables} from "./TablesTypes.js"
+import {Tables} from "./TablesModel.js"
 
 
 
